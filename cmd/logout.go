@@ -9,10 +9,10 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"os"
 	"time"
 
 	"github.com/spf13/cobra"
+	"github.com/yoshiyuki-140/godminone/internal/utils"
 )
 
 // logoutCmd represents the logout command
@@ -30,13 +30,7 @@ to quickly create a Cobra application.`,
 			TODO: internal/api 及び internal/logicにコード分割
 		*/
 
-		// session_id.txtからセッションIDを読み込み
-		sessionIDData, err := os.ReadFile("session_id.txt")
-		if err != nil {
-			fmt.Println("session_id.txtの読み込みエラー:", err)
-			return
-		}
-		sessionID := string(sessionIDData)
+		sessionID, _ := utils.ReadSessionId()
 
 		// POSTするJSONデータを作成
 		data := map[string]string{
