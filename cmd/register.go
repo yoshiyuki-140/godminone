@@ -14,7 +14,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-
 // registerCmd represents the register command
 var registerCmd = &cobra.Command{
 	Use:   "register",
@@ -22,8 +21,10 @@ var registerCmd = &cobra.Command{
 	Long:  `アカウント登録コマンド. --nameと--passwordは必須オプション`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("register called")
-		// jsonファイルの読み込み
-		// 入力されたメールアドレスとパスワードを使ってHTTP POSTリクエスト
+		/*
+			TODO: internal/api 及び internal/logicにコード分割
+		*/
+
 		func() {
 			// 送信するデータ
 			data := map[string]string{

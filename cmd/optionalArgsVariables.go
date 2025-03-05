@@ -1,3 +1,5 @@
 package cmd
 
-var name, password string
+var name string
+var password string
+var id string
