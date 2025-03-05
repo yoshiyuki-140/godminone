@@ -4,8 +4,6 @@ Copyright © 2025 NAME HERE <EMAIL ADDRESS>
 package cmd
 
 import (
-	"fmt"
-
 	"github.com/spf13/cobra"
 	"github.com/yoshiyuki-140/godminone/internal/logic/account"
 )
@@ -17,7 +15,6 @@ var loginCmd = &cobra.Command{
 	Long:  `ログインコマンド,--nameと--passwordオプションは必須`,
 	Run: func(cmd *cobra.Command, args []string) {
 		account.Login(name, password)
-		fmt.Println("login called")
 	},
 }
 
