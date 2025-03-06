@@ -1,5 +1,5 @@
 # godminone-v1
-HTTP通信するcobraのCLIツール試作品
+HTTP通信するcobra製CLIツールの試作品
 
 ## Go version
 
