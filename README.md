@@ -12,5 +12,6 @@ go version go1.22.2 linux/amd64
 
 ```bash
 go build
+# print command help
 ./godminone -h
 ```
