@@ -1,2 +1,2 @@
 # godminone-v1
-PydminoneのGoによるリプレイス試作
+HTTP通信するcobraのCLIツール試作品
