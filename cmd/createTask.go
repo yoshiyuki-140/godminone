@@ -4,22 +4,9 @@ Copyright © 2025 NAME HERE <EMAIL ADDRESS>
 package cmd
 
 import (
-	"fmt"
-
 	"github.com/spf13/cobra"
-	"github.com/yoshiyuki-140/godminone/internal/api"
-	"github.com/yoshiyuki-140/godminone/internal/utils"
+	"github.com/yoshiyuki-140/godminone/internal/logic/tasks"
 )
-
-type subRequestTask struct {
-	Task        string `gorm:"type:text" json:"task"`
-	IsCompleted bool   `json:"is_completed"`
-}
-
-type request struct {
-	SessionId string         `json:"session_id"`
-	Task      subRequestTask `json:"task"`
-}
 
 // createTaskCmd represents the createTask command
 var createTaskCmd = &cobra.Command{
@@ -32,18 +19,7 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		sessionId, _ := utils.ReadSessionId()
-		req := request{SessionId: sessionId, Task: subRequestTask{Task: task, IsCompleted: false}}
-
-		url := "http://localhost:8080/tasks"
-
-		statusCode, body, _ := api.Post(req, url, true)
-
-		// ステータスコードとレスポンスボディの出力
-		fmt.Println("ステータスコード:", statusCode)
-		fmt.Println("レスポンスボディ:", string(body))
-
-		fmt.Println("createTask called")
+		tasks.CreateTask(task)
 	},
 }
 
