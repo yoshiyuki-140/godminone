@@ -7,8 +7,6 @@ import (
 	"github.com/yoshiyuki-140/godminone/internal/utils"
 )
 
-
-
 func GetTask(id string) {
 	sessionID, _ := utils.ReadSessionId()
 
