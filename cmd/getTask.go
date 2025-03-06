@@ -4,54 +4,22 @@ Copyright © 2025 NAME HERE <EMAIL ADDRESS>
 package cmd
 
 import (
-	"fmt"
-	"log"
-
 	"github.com/spf13/cobra"
-	"github.com/yoshiyuki-140/godminone/internal/api"
-	"github.com/yoshiyuki-140/godminone/internal/utils"
+	"github.com/yoshiyuki-140/godminone/internal/logic/tasks"
 )
 
 // getTaskCmd represents the getTask command
 var getTaskCmd = &cobra.Command{
 	Use:   "getTask",
 	Short: "現在のタスク確認コマンド",
-	Long:  `--idでプライマリーキーがid番のタスクの中身を一つづつ知ることができる.`,
+	Long:  `--idでプライマリーキーがid番のタスクの中身を一つずつ知ることができる.`,
 	Run: func(cmd *cobra.Command, args []string) {
-
-		sessionID, _ := utils.ReadSessionId()
-
-		log.Println("タスクID:", id)
-
+		// idが指定されていない時は全てのタスクを取得する
 		if id == "" {
-			func() {
-				// POSTするJSONデータを作成
-				data := map[string]string{
-					"session_id": sessionID,
-				}
-				url := "http://localhost:8080/tasks"
-				statusCode, body, _ := api.Get(data, url, true)
-
-				// ステータスコードとレスポンスボディの出力
-				fmt.Println("ステータスコード:", statusCode)
-				fmt.Println("レスポンスボディ:", string(body))
-			}()
+			tasks.GetAllTask()
 		} else {
-			func() {
-				// POSTするJSONデータを作成
-				data := map[string]string{
-					"session_id": sessionID,
-				}
-				url := fmt.Sprintf("http://localhost:8080/tasks/%s", id)
-				statusCode, body, _ := api.Get(data, url, true)
-
-				// ステータスコードとレスポンスボディの出力
-				fmt.Println("ステータスコード:", statusCode)
-				fmt.Println("レスポンスボディ:", string(body))
-
-			}()
+			tasks.GetTask(id)
 		}
-		fmt.Println("getTask called")
 	},
 }
 
